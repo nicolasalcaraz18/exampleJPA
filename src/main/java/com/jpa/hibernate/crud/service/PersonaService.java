@@ -44,6 +44,10 @@ public class PersonaService implements  IPersonaService{
         this.savePerson(persona);
     }
 
+    /**
+     * el método save además de dar un alta, modifica.
+     * @param per
+     */
     @Override
     public void editPerson(Persona per) {
         this.savePerson(per);
