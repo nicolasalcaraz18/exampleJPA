@@ -1,9 +1,6 @@
 package com.jpa.hibernate.crud.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +14,9 @@ public class Persona {
     private String nombre;
     private String apellido;
     private int edad;
+    @OneToOne
+    @JoinColumn(name = "mascota_id_mascota", referencedColumnName = "id_mascota")
+    private Mascota mascota;
 
     /**
      * constructor por defecto es necesario para que JPA pueda instanciar la entidad
@@ -26,10 +26,11 @@ public class Persona {
     public Persona (){
 
     }
-    public Persona(Long id, String nombre, String apellido, int edad) {
+    public Persona(Long id, String nombre, String apellido, int edad, Mascota mascota) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
+        this.mascota = mascota;
     }
 }

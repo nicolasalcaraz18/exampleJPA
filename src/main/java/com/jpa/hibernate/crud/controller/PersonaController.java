@@ -10,7 +10,6 @@ import java.util.List;
 @RestController
 public class PersonaController {
 
-
     @Autowired //se inyecta la interfaz, ya qué en susodicha se realizara cualquier agregado o modificación
     private IPersonaService interPersona;
 
@@ -46,7 +45,7 @@ public class PersonaController {
      * Recordar que Hibernate no permite cambiar el valor del identificador de una entidad una vez
      * que ha sido persisitida.
      */
-    @PutMapping("personas/editar/{id_modificar}") // el endpoint capaz está mal.
+    @PutMapping("/personas/editar/{id_modificar}") // el endpoint capaz está mal.
     public Persona editPersona(@PathVariable Long id_modificar,
                                @RequestParam(required = false, name = "nombre")String nuevoNombre,
                                @RequestParam(required = false, name = "apellido")String nuevoApellido,
@@ -54,6 +53,12 @@ public class PersonaController {
         this.interPersona.editPerson(id_modificar,nuevoNombre,nuevoApellido,nuevaEdad);
 
         return this.interPersona.findPerson(id_modificar);
+    }
+
+    @PutMapping("/personas/editar")
+    public Persona editPersona(@RequestBody Persona per){
+        interPersona.editPerson(per);
+        return interPersona.findPerson(per.getId());
     }
 
 }
