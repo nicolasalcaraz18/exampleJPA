@@ -1,9 +1,6 @@
 package com.jpa.hibernate.crud.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +16,7 @@ public class Mascota {
     private String especie;
     private String raza;
     private String color;
+
 
     public Mascota() {
     }

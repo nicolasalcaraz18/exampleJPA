@@ -1,8 +1,12 @@
 package com.jpa.hibernate.crud.model;
 
+import ch.qos.logback.core.util.COWArrayList;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,9 +18,8 @@ public class Persona {
     private String nombre;
     private String apellido;
     private int edad;
-    @OneToOne
-    @JoinColumn(name = "mascota_id_mascota", referencedColumnName = "id_mascota")
-    private Mascota mascota;
+    @OneToMany
+    private List<Mascota> listaMascotas; // recordar instanciar la lista (arraylist)
 
     /**
      * constructor por defecto es necesario para que JPA pueda instanciar la entidad
@@ -26,11 +29,11 @@ public class Persona {
     public Persona (){
 
     }
-    public Persona(Long id, String nombre, String apellido, int edad, Mascota mascota) {
+    public Persona(Long id, String nombre, String apellido, int edad, Mascota mascota,List<Mascota>listaMascotas) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
-        this.mascota = mascota;
+        this.listaMascotas = listaMascotas;
     }
 }
